@@ -1,126 +1,72 @@
 {
   "nodos": [
-    {
-      "nombre": "Casa",
-      "lat": 20.0,
-      "lon": 10.0
-    },
-    {
-      "nombre": "Apto",
-      "lat": 30.0,
-      "lon": 40.0
-    },
-    {
-      "nombre": "Supermercado",
-      "lat": 25.5,
-      "lon": 15.2
-    },
-    {
-      "nombre": "Escuela",
-      "lat": 35.8,
-      "lon": 22.4
-    },
-    {
-      "nombre": "Parque",
-      "lat": 28.3,
-      "lon": 18.7
-    },
-    {
-      "nombre": "Hospital",
-      "lat": 32.1,
-      "lon": 45.6
-    },
-    {
-      "nombre": "Restaurante",
-      "lat": 27.9,
-      "lon": 12.3
-    },
-    {
-      "nombre": "Gimnasio",
-      "lat": 31.4,
-      "lon": 28.9
-    },
-    {
-      "nombre": "Biblioteca",
-      "lat": 33.7,
-      "lon": 19.5
-    },
-    {
-      "nombre": "Estación de Bus",
-      "lat": 29.6,
-      "lon": 25.1
-    }
+    { "nombre": "Usaquén", "lat": 4.75, "lon": -73.98 },
+    { "nombre": "Chapinero", "lat": 4.65, "lon": -74.05 },
+    { "nombre": "Teusaquillo", "lat": 4.64, "lon": -74.08 },
+    { "nombre": "La Candelaria", "lat": 4.6, "lon": -74.07 },
+    { "nombre": "Kennedy", "lat": 4.63, "lon": -74.18 },
+    { "nombre": "Suba", "lat": 4.74, "lon": -74.1 },
+    { "nombre": "Engativá", "lat": 4.7, "lon": -74.13 },
+    { "nombre": "Bosa", "lat": 4.58, "lon": -74.19 },
+    { "nombre": "El Dorado", "lat": 4.7, "lon": -74.14 },
+    { "nombre": "Monserrate", "lat": 4.61, "lon": -74.04 },
+    { "nombre": "Plaza Bolívar", "lat": 4.598, "lon": -74.076 },
+    { "nombre": "Unicentro", "lat": 4.7, "lon": -74.03 },
+    { "nombre": "Salitre", "lat": 4.66, "lon": -74.12 },
+    { "nombre": "San Cristóbal", "lat": 4.56, "lon": -74.08 },
+    { "nombre": "Portal Sur", "lat": 4.57, "lon": -74.16 },
+    { "nombre": "Portal Norte", "lat": 4.76, "lon": -74.04 },
+    { "nombre": "Portal 80", "lat": 4.72, "lon": -74.12 },
+    { "nombre": "Portal Américas", "lat": 4.62, "lon": -74.19 }
   ],
   "aristas": [
+    { "origen": "Usaquén", "destino": "Unicentro", "bidireccional": true },
+    { "origen": "Unicentro", "destino": "Chapinero", "bidireccional": true },
+    { "origen": "Chapinero", "destino": "Teusaquillo", "bidireccional": true },
     {
-      "origen": "Casa",
-      "destino": "Supermercado",
+      "origen": "Teusaquillo",
+      "destino": "La Candelaria",
       "bidireccional": true
     },
     {
-      "origen": "Casa",
-      "destino": "Parque",
+      "origen": "La Candelaria",
+      "destino": "Plaza Bolívar",
       "bidireccional": true
     },
     {
-      "origen": "Apto",
-      "destino": "Hospital",
+      "origen": "Plaza Bolívar",
+      "destino": "Monserrate",
+      "bidireccional": true
+    },
+    { "origen": "Chapinero", "destino": "Monserrate", "bidireccional": true },
+    { "origen": "Teusaquillo", "destino": "Salitre", "bidireccional": true },
+    { "origen": "Salitre", "destino": "Engativá", "bidireccional": true },
+    { "origen": "Engativá", "destino": "El Dorado", "bidireccional": true },
+    { "origen": "El Dorado", "destino": "Portal 80", "bidireccional": true },
+    { "origen": "Portal 80", "destino": "Suba", "bidireccional": true },
+    { "origen": "Suba", "destino": "Portal Norte", "bidireccional": true },
+    { "origen": "Portal Norte", "destino": "Usaquén", "bidireccional": true },
+    { "origen": "Salitre", "destino": "Kennedy", "bidireccional": true },
+    {
+      "origen": "Kennedy",
+      "destino": "Portal Américas",
+      "bidireccional": true
+    },
+    { "origen": "Portal Américas", "destino": "Bosa", "bidireccional": true },
+    { "origen": "Bosa", "destino": "Portal Sur", "bidireccional": true },
+    {
+      "origen": "Portal Sur",
+      "destino": "San Cristóbal",
       "bidireccional": true
     },
     {
-      "origen": "Supermercado",
-      "destino": "Restaurante",
+      "origen": "San Cristóbal",
+      "destino": "La Candelaria",
       "bidireccional": true
     },
-    {
-      "origen": "Escuela",
-      "destino": "Biblioteca",
-      "bidireccional": true
-    },
-    {
-      "origen": "Parque",
-      "destino": "Estación de Bus",
-      "bidireccional": true
-    },
-    {
-      "origen": "Gimnasio",
-      "destino": "Estación de Bus",
-      "bidireccional": true
-    },
-    {
-      "origen": "Hospital",
-      "destino": "Biblioteca",
-      "bidireccional": true
-    },
-    {
-      "origen": "Restaurante",
-      "destino": "Estación de Bus",
-      "bidireccional": true
-    },
-    {
-      "origen": "Supermercado",
-      "destino": "Estación de Bus",
-      "bidireccional": true
-    },
-    {
-      "origen": "Escuela",
-      "destino": "Gimnasio",
-      "bidireccional": true
-    },
-    {
-      "origen": "Biblioteca",
-      "destino": "Estación de Bus",
-      "bidireccional": true
-    },
-    {
-      "origen": "Hospital",
-      "destino": "Estación de Bus",
-      "bidireccional": true
-    },
-    {
-      "origen": "Apto",
-      "destino": "Estación de Bus",
-      "bidireccional": true
-    }
+    { "origen": "Kennedy", "destino": "Bosa", "bidireccional": true },
+    { "origen": "Engativá", "destino": "Portal 80", "bidireccional": true },
+    { "origen": "Suba", "destino": "Engativá", "bidireccional": true },
+    { "origen": "Chapinero", "destino": "Suba", "bidireccional": true }
   ]
 }
