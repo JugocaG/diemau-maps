@@ -1,0 +1,126 @@
+{
+  "nodos": [
+    {
+      "nombre": "Casa",
+      "lat": 20.0,
+      "lon": 10.0
+    },
+    {
+      "nombre": "Apto",
+      "lat": 30.0,
+      "lon": 40.0
+    },
+    {
+      "nombre": "Supermercado",
+      "lat": 25.5,
+      "lon": 15.2
+    },
+    {
+      "nombre": "Escuela",
+      "lat": 35.8,
+      "lon": 22.4
+    },
+    {
+      "nombre": "Parque",
+      "lat": 28.3,
+      "lon": 18.7
+    },
+    {
+      "nombre": "Hospital",
+      "lat": 32.1,
+      "lon": 45.6
+    },
+    {
+      "nombre": "Restaurante",
+      "lat": 27.9,
+      "lon": 12.3
+    },
+    {
+      "nombre": "Gimnasio",
+      "lat": 31.4,
+      "lon": 28.9
+    },
+    {
+      "nombre": "Biblioteca",
+      "lat": 33.7,
+      "lon": 19.5
+    },
+    {
+      "nombre": "Estación de Bus",
+      "lat": 29.6,
+      "lon": 25.1
+    }
+  ],
+  "aristas": [
+    {
+      "origen": "Casa",
+      "destino": "Supermercado",
+      "bidireccional": true
+    },
+    {
+      "origen": "Casa",
+      "destino": "Parque",
+      "bidireccional": true
+    },
+    {
+      "origen": "Apto",
+      "destino": "Hospital",
+      "bidireccional": true
+    },
+    {
+      "origen": "Supermercado",
+      "destino": "Restaurante",
+      "bidireccional": true
+    },
+    {
+      "origen": "Escuela",
+      "destino": "Biblioteca",
+      "bidireccional": true
+    },
+    {
+      "origen": "Parque",
+      "destino": "Estación de Bus",
+      "bidireccional": true
+    },
+    {
+      "origen": "Gimnasio",
+      "destino": "Estación de Bus",
+      "bidireccional": true
+    },
+    {
+      "origen": "Hospital",
+      "destino": "Biblioteca",
+      "bidireccional": true
+    },
+    {
+      "origen": "Restaurante",
+      "destino": "Estación de Bus",
+      "bidireccional": true
+    },
+    {
+      "origen": "Supermercado",
+      "destino": "Estación de Bus",
+      "bidireccional": true
+    },
+    {
+      "origen": "Escuela",
+      "destino": "Gimnasio",
+      "bidireccional": true
+    },
+    {
+      "origen": "Biblioteca",
+      "destino": "Estación de Bus",
+      "bidireccional": true
+    },
+    {
+      "origen": "Hospital",
+      "destino": "Estación de Bus",
+      "bidireccional": true
+    },
+    {
+      "origen": "Apto",
+      "destino": "Estación de Bus",
+      "bidireccional": true
+    }
+  ]
+}
