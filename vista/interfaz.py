@@ -43,12 +43,15 @@ class Vista(tk.Tk):
         
         # Estilos para botones
         style.configure("TButton",
-                       font=("Segoe UI", 10),
-                       padding=5)
+                       font=("Segoe UI", 10, "bold"),
+                       padding=5,
+                       background="#2980b9",
+                       foreground="#ffffff")
         
         style.map("TButton",
                  background=[("active", "#3498db"), ("!active", "#2980b9")],
-                 foreground=[("active", "#ffffff"), ("!active", "#ffffff")])
+                 foreground=[("active", "#ffffff"), ("!active", "#ffffff")],
+                 relief=[("pressed", "sunken"), ("!pressed", "raised")])
         
         # Estilos para labelframes
         style.configure("TLabelframe", 
@@ -126,10 +129,22 @@ class Vista(tk.Tk):
         btn_frame = ttk.Frame(form_frame, style="TFrame")
         btn_frame.grid(row=3, column=0, columnspan=2, pady=15)
         
-        ttk.Button(btn_frame, text="Agregar", command=self._agregar, style="TButton").pack(side="left", padx=5)
-        ttk.Button(btn_frame, text="Editar", command=self._editar, style="TButton").pack(side="left", padx=5)
-        ttk.Button(btn_frame, text="Eliminar", command=self._eliminar, style="TButton").pack(side="left", padx=5)
-        ttk.Button(btn_frame, text="Limpiar", command=self._limpiar_campos, style="TButton").pack(side="left", padx=5)
+        tk.Button(btn_frame, text="Agregar", command=self._agregar, 
+                 bg="#2980b9", fg="white", font=("Segoe UI", 10, "bold"),
+                 activebackground="#3498db", activeforeground="white",
+                 relief="raised", bd=2, padx=5, pady=3).pack(side="left", padx=5)
+        tk.Button(btn_frame, text="Editar", command=self._editar, 
+                 bg="#2980b9", fg="white", font=("Segoe UI", 10, "bold"),
+                 activebackground="#3498db", activeforeground="white",
+                 relief="raised", bd=2, padx=5, pady=3).pack(side="left", padx=5)
+        tk.Button(btn_frame, text="Eliminar", command=self._eliminar, 
+                 bg="#2980b9", fg="white", font=("Segoe UI", 10, "bold"),
+                 activebackground="#3498db", activeforeground="white",
+                 relief="raised", bd=2, padx=5, pady=3).pack(side="left", padx=5)
+        tk.Button(btn_frame, text="Limpiar", command=self._limpiar_campos, 
+                 bg="#2980b9", fg="white", font=("Segoe UI", 10, "bold"),
+                 activebackground="#3498db", activeforeground="white",
+                 relief="raised", bd=2, padx=5, pady=3).pack(side="left", padx=5)
 
         # Frame para la lista de nodos
         list_frame = ttk.LabelFrame(left_panel, text="Nodos Disponibles", padding="15", style="TLabelframe")
@@ -175,10 +190,16 @@ class Vista(tk.Tk):
         edge_btn_frame = ttk.Frame(edge_frame, style="TFrame")
         edge_btn_frame.grid(row=3, column=0, columnspan=2, pady=10)
         
-        ttk.Button(edge_btn_frame, text="Agregar Camino", 
-                  command=self._agregar_arista, style="TButton").pack(side="left", padx=5)
-        ttk.Button(edge_btn_frame, text="Eliminar Camino", 
-                  command=self._eliminar_arista, style="TButton").pack(side="left", padx=5)
+        tk.Button(edge_btn_frame, text="Agregar Camino", 
+                 command=self._agregar_arista, 
+                 bg="#2980b9", fg="white", font=("Segoe UI", 10, "bold"),
+                 activebackground="#3498db", activeforeground="white",
+                 relief="raised", bd=2, padx=5, pady=3).pack(side="left", padx=5)
+        tk.Button(edge_btn_frame, text="Eliminar Camino", 
+                 command=self._eliminar_arista, 
+                 bg="#2980b9", fg="white", font=("Segoe UI", 10, "bold"),
+                 activebackground="#3498db", activeforeground="white",
+                 relief="raised", bd=2, padx=5, pady=3).pack(side="left", padx=5)
 
         # Frame para el cálculo de ruta
         route_frame = ttk.LabelFrame(left_panel, text="Cálculo de Ruta", padding="15", style="TLabelframe")
@@ -226,32 +247,44 @@ class Vista(tk.Tk):
         self.waypoint_entry = ttk.Entry(add_waypoint_frame, width=20, style="TEntry")
         self.waypoint_entry.pack(side="left", padx=5)
         
-        ttk.Button(add_waypoint_frame, text="+", 
-                  command=self._agregar_waypoint,
-                  style="TButton",
-                  width=3).pack(side="left", padx=5)
+        tk.Button(add_waypoint_frame, text="+", 
+                 command=self._agregar_waypoint,
+                 bg="#2980b9", fg="white", font=("Segoe UI", 10, "bold"),
+                 activebackground="#3498db", activeforeground="white",
+                 relief="raised", bd=2, width=3).pack(side="left", padx=5)
         
         # Botones para gestionar puntos intermedios
         waypoint_btn_frame = ttk.Frame(route_frame, style="TFrame")
         waypoint_btn_frame.grid(row=3, column=0, columnspan=2, sticky="ew", pady=(0, 10))
         
-        ttk.Button(waypoint_btn_frame, text="Subir", 
-                  command=self._mover_waypoint_arriba,
-                  style="TButton").pack(side="left", padx=5)
-        ttk.Button(waypoint_btn_frame, text="Bajar", 
-                  command=self._mover_waypoint_abajo,
-                  style="TButton").pack(side="left", padx=5)
-        ttk.Button(waypoint_btn_frame, text="Eliminar", 
-                  command=self._eliminar_waypoint,
-                  style="TButton").pack(side="left", padx=5)
-        ttk.Button(waypoint_btn_frame, text="Limpiar", 
-                  command=self._limpiar_waypoints,
-                  style="TButton").pack(side="left", padx=5)
+        tk.Button(waypoint_btn_frame, text="Subir", 
+                 command=self._mover_waypoint_arriba,
+                 bg="#2980b9", fg="white", font=("Segoe UI", 10, "bold"),
+                 activebackground="#3498db", activeforeground="white",
+                 relief="raised", bd=2, padx=5, pady=3).pack(side="left", padx=5)
+        tk.Button(waypoint_btn_frame, text="Bajar", 
+                 command=self._mover_waypoint_abajo,
+                 bg="#2980b9", fg="white", font=("Segoe UI", 10, "bold"),
+                 activebackground="#3498db", activeforeground="white",
+                 relief="raised", bd=2, padx=5, pady=3).pack(side="left", padx=5)
+        tk.Button(waypoint_btn_frame, text="Eliminar", 
+                 command=self._eliminar_waypoint,
+                 bg="#2980b9", fg="white", font=("Segoe UI", 10, "bold"),
+                 activebackground="#3498db", activeforeground="white",
+                 relief="raised", bd=2, padx=5, pady=3).pack(side="left", padx=5)
+        tk.Button(waypoint_btn_frame, text="Limpiar", 
+                 command=self._limpiar_waypoints,
+                 bg="#2980b9", fg="white", font=("Segoe UI", 10, "bold"),
+                 activebackground="#3498db", activeforeground="white",
+                 relief="raised", bd=2, padx=5, pady=3).pack(side="left", padx=5)
 
         # Botón para calcular ruta
-        ttk.Button(route_frame, text="Calcular Ruta", 
-                  command=self._calcular_ruta,
-                  style="TButton").grid(row=4, column=0, columnspan=2, pady=10)
+        calc_btn = tk.Button(route_frame, text="Calcular Ruta", 
+                           command=self._calcular_ruta,
+                           bg="#2980b9", fg="white", font=("Segoe UI", 10, "bold"),
+                           activebackground="#3498db", activeforeground="white",
+                           relief="raised", bd=2, padx=10, pady=5)
+        calc_btn.grid(row=4, column=0, columnspan=2, pady=10)
 
         # Frame para mostrar la ruta
         result_frame = ttk.LabelFrame(left_panel, text="Resultado", padding="15", style="TLabelframe")
@@ -454,7 +487,7 @@ class Vista(tk.Tk):
             self.lista.insert(tk.END, n)
         self.status_bar.config(text=f"Lista actualizada: {len(nombres)} nodos")
 
-    def actualizar_aristas(self, aristas, camino=None) -> None:
+    def actualizar_aristas(self, aristas, camino=None, stops=None) -> None:
         # Limpiar el mapa
         self.ax.clear()
         
@@ -464,7 +497,39 @@ class Vista(tk.Tk):
         self.ax.set_ylabel("Latitud", fontsize=10, labelpad=10)
         self.ax.grid(True, linestyle='--', alpha=0.7)
         
-        # Dibujar nodos con mejor estilo
+        # Colores para los segmentos del camino
+        colores_segmento = [
+            "#e74c3c",  # rojo
+            "#e67e22",  # naranja
+            "#f1c40f",  # amarillo
+            "#2ecc71",  # verde
+            "#3498db",  # azul
+            "#9b59b6",  # morado
+            "#1abc9c",  # turquesa
+            "#d35400",  # naranja oscuro
+        ]
+
+        # Dibujar primero las aristas normales (no parte del camino)
+        for origen, destino, peso, bidireccional in aristas:
+            nodo_origen = self.controlador.grafo.nodos[origen]
+            nodo_destino = self.controlador.grafo.nodos[destino]
+            
+            # Solo dibujar si no es parte del camino
+            if not camino or (origen, destino) not in [(camino[i], camino[i+1]) for i in range(len(camino)-1)]:
+                self.ax.plot([nodo_origen.longitud, nodo_destino.longitud],
+                           [nodo_origen.latitud, nodo_destino.latitud], 
+                           color='#bdc3c7', alpha=0.3, linewidth=1)
+                
+                if not bidireccional:
+                    mid_x = (nodo_origen.longitud + nodo_destino.longitud) / 2
+                    mid_y = (nodo_origen.latitud + nodo_destino.latitud) / 2
+                    dx = nodo_destino.longitud - nodo_origen.longitud
+                    dy = nodo_destino.latitud - nodo_origen.latitud
+                    self.ax.arrow(mid_x, mid_y, dx/4, dy/4, 
+                                head_width=0.02, head_length=0.02, 
+                                fc='#bdc3c7', ec='#bdc3c7', alpha=0.3)
+
+        # Dibujar los nodos
         for nombre, nodo in self.controlador.grafo.nodos.items():
             if camino and nombre in camino:
                 self.ax.plot(nodo.longitud, nodo.latitud, 'go', markersize=10, alpha=0.8)
@@ -474,36 +539,43 @@ class Vista(tk.Tk):
                         fontsize=9, ha='center', va='bottom',
                         bbox=dict(facecolor='white', alpha=0.7, edgecolor='none', pad=2))
 
-        # Dibujar aristas con mejor estilo
-        for origen, destino, peso, bidireccional in aristas:
-            nodo_origen = self.controlador.grafo.nodos[origen]
-            nodo_destino = self.controlador.grafo.nodos[destino]
-            
-            es_camino_corto = False
-            if camino:
-                for i in range(len(camino) - 1):
-                    if (camino[i] == origen and camino[i + 1] == destino) or \
-                       (camino[i] == destino and camino[i + 1] == origen):
-                        es_camino_corto = True
-                        break
-            
-            # Líneas más gruesas y mejor estilo
-            color = '#2ecc71' if es_camino_corto else '#3498db'
-            alpha = 0.8 if es_camino_corto else 0.5
-            linewidth = 2 if es_camino_corto else 1.5
-            
-            self.ax.plot([nodo_origen.longitud, nodo_destino.longitud],
-                        [nodo_origen.latitud, nodo_destino.latitud], 
-                        color=color, alpha=alpha, linewidth=linewidth)
-            
-            if not bidireccional:
+        # Dibujar el camino con segmentos numerados
+        if camino and stops:
+            segment_idx = 0
+            for i in range(len(camino) - 1):
+                u = camino[i]
+                v = camino[i + 1]
+                nodo_origen = self.controlador.grafo.nodos[u]
+                nodo_destino = self.controlador.grafo.nodos[v]
+                
+                # Determinar el color del segmento
+                color = colores_segmento[segment_idx % len(colores_segmento)]
+                
+                # Dibujar el segmento
+                self.ax.plot([nodo_origen.longitud, nodo_destino.longitud],
+                           [nodo_origen.latitud, nodo_destino.latitud], 
+                           color=color, alpha=0.9, linewidth=2.5)
+                
+                # Añadir número de segmento
                 mid_x = (nodo_origen.longitud + nodo_destino.longitud) / 2
                 mid_y = (nodo_origen.latitud + nodo_destino.latitud) / 2
-                dx = nodo_destino.longitud - nodo_origen.longitud
-                dy = nodo_destino.latitud - nodo_origen.latitud
-                self.ax.arrow(mid_x, mid_y, dx/4, dy/4, 
-                            head_width=0.02, head_length=0.02, 
-                            fc=color, ec=color, alpha=alpha)
+                self.ax.text(mid_x, mid_y, str(segment_idx + 1),
+                           fontsize=10, ha='center', va='center',
+                           bbox=dict(facecolor='white', alpha=0.8, edgecolor=color, pad=2))
+                
+                # Incrementar el índice de segmento si llegamos a un punto de parada
+                if v in stops[1:]:
+                    segment_idx += 1
+
+        # Añadir leyenda de segmentos
+        if camino and stops:
+            legend_elements = []
+            for i in range(len(stops) - 1):
+                color = colores_segmento[i % len(colores_segmento)]
+                legend_elements.append(plt.Line2D([0], [0], color=color, lw=2.5,
+                                               label=f'Segmento {i+1}: {stops[i]} → {stops[i+1]}'))
+            self.ax.legend(handles=legend_elements, loc='upper right', 
+                         bbox_to_anchor=(1.15, 1), fontsize=8)
 
         # Ajustar límites del mapa con margen
         if self.controlador.grafo.nodos:

@@ -70,7 +70,7 @@ class Controlador:
 
     def calcular_ruta_con_paradas(self, inicio: str, fin: str, waypoints: list):
         """
-        Calcula una ruta que pasa por todos los puntos intermedios en el orden especificado.
+        Calcula una ruta que pasa por todos los puntos intermedios en orden optimizado.
         
         Args:
             inicio: Nodo inicial
@@ -78,37 +78,77 @@ class Controlador:
             waypoints: Lista de nodos intermedios por los que debe pasar la ruta
         """
         try:
-            # Lista para almacenar todas las rutas parciales
-            rutas_parciales = []
-            distancia_total = 0
-            
-            # Calcular ruta desde el inicio hasta el primer waypoint
-            puntos = [inicio] + waypoints + [fin]
-            
-            for i in range(len(puntos) - 1):
-                resultado = self.grafo.dijkstra(puntos[i], puntos[i + 1])
-                if resultado is None:
-                    self.vista.mostrar_ruta(f"No existe una ruta entre {puntos[i]} y {puntos[i + 1]}.")
-                    self.vista.actualizar_aristas(self.grafo.obtener_aristas())
-                    return
+            if not waypoints:
+                # Si no hay puntos intermedios, simplemente calcula la ruta directa
+                return self.calcular_ruta(inicio, fin)
                 
-                camino, distancia = resultado
-                rutas_parciales.append(camino)
-                distancia_total += distancia
+            # Crear una matriz de distancias entre todos los puntos (incluidos inicio y fin)
+            todos_puntos = [inicio] + waypoints + [fin]
+            n_puntos = len(todos_puntos)
             
-            # Combinar todas las rutas parciales
+            # Matriz para almacenar distancias entre todos los pares de puntos
+            matriz_distancias = {}
+            caminos_entre_puntos = {}
+            
+            # Calcular las distancias entre todos los pares de puntos
+            for i in range(n_puntos):
+                origen = todos_puntos[i]
+                for j in range(n_puntos):
+                    if i == j:
+                        continue
+                    destino = todos_puntos[j]
+                    resultado = self.grafo.dijkstra(origen, destino)
+                    if resultado is None:
+                        self.vista.mostrar_ruta(f"No existe una ruta entre {origen} y {destino}.")
+                        self.vista.actualizar_aristas(self.grafo.obtener_aristas())
+                        return
+                    
+                    camino, distancia = resultado
+                    matriz_distancias[(origen, destino)] = distancia
+                    caminos_entre_puntos[(origen, destino)] = camino
+            
+            # Encontrar la mejor secuencia de puntos intermedios
+            # Para problemas pequeños, podemos probar todas las permutaciones
+            # En problemas más grandes, se debería usar una heurística más sofisticada
+            
+            import itertools
+            
+            # Solo permutamos los waypoints (mantenemos inicio y fin fijos)
+            mejor_distancia = float('inf')
+            mejor_secuencia = None
+            
+            for perm in itertools.permutations(waypoints):
+                secuencia_actual = [inicio] + list(perm) + [fin]
+                distancia_total = 0
+                
+                # Calcular la distancia total de esta secuencia
+                for i in range(len(secuencia_actual) - 1):
+                    origen = secuencia_actual[i]
+                    destino = secuencia_actual[i + 1]
+                    distancia_total += matriz_distancias[(origen, destino)]
+                
+                # Actualizar la mejor secuencia si esta es mejor
+                if distancia_total < mejor_distancia:
+                    mejor_distancia = distancia_total
+                    mejor_secuencia = secuencia_actual
+            
+            # Construir la ruta completa con la mejor secuencia
             ruta_completa = []
-            for i, ruta in enumerate(rutas_parciales):
+            for i in range(len(mejor_secuencia) - 1):
+                origen = mejor_secuencia[i]
+                destino = mejor_secuencia[i + 1]
+                camino = caminos_entre_puntos[(origen, destino)]
+                
                 if i == 0:
-                    ruta_completa.extend(ruta)
+                    ruta_completa.extend(camino)
                 else:
                     # Evitar duplicar el punto de conexión
-                    ruta_completa.extend(ruta[1:])
+                    ruta_completa.extend(camino[1:])
             
             # Mostrar la ruta completa
-            texto = f"Ruta: {' → '.join(ruta_completa)} | Distancia total: {distancia_total:.2f}"
+            texto = f"Ruta optimizada: {' → '.join(ruta_completa)} | Distancia total: {mejor_distancia:.2f}"
             self.vista.mostrar_ruta(texto)
-            self.vista.actualizar_aristas(self.grafo.obtener_aristas(), ruta_completa)
+            self.vista.actualizar_aristas(self.grafo.obtener_aristas(), ruta_completa, mejor_secuencia)
             
         except Exception as e:
             self.vista.mostrar_error(str(e))
